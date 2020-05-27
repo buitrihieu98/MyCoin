@@ -10,12 +10,24 @@ namespace MyCoin
 {
     public class Block
     {
+        public List<Transaction> transactions = new List<Transaction>();
         public String hash;
         public String previousHash;
-        private String data; //our data will be a simple message.
+        private String data;
         private long timeStamp; //as number of milliseconds since 1/1/1970.
         private int nonce = 0;
+        public string Creator { get; set; }
+        public int height { get; set; }
 
+        public Block(int height, string previousHash, List<Transaction> transactions, string creator)
+        {
+            this.height = height;
+            this.previousHash = previousHash;
+            this.timeStamp = Datetime.GetTime();
+            this.transactions = transactions;
+            this.hash = CalculateHash();
+            this.Creator = creator;
+        }
         //Block Constructor.
         public Block(String data, String previousHash)
         {
@@ -29,7 +41,7 @@ namespace MyCoin
         public String CalculateHash()
         {
             HashSha256 sha256 = new HashSha256();
-            String calculatedhash = sha256.Hash(
+            String calculatedhash = sha256.Hash(height+
                     previousHash +
                     timeStamp.ToString() +
                     nonce.ToString() +
@@ -46,7 +58,7 @@ namespace MyCoin
                 nonce++;
                 hash = CalculateHash();
             }
-            Console.WriteLine("Block Mined!!! : " + hash);
+            Console.WriteLine("Block Mined!!! : " + hash + "Nonce:" + nonce);
         }
 
     }

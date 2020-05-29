@@ -24,28 +24,23 @@ namespace MyCoin
             int balance = 0;
             int spending = 0;
             int income = 0;
-
             foreach (Block block in MyCoin.MainWindow.blockChain)
             {
                 var transaction = block.transaction;
+                var sender = transaction.Sender;
+                var recipient = transaction.Recipient;
 
- 
-                    var sender = transaction.Sender;
-                    var recipient = transaction.Recipient;
+                if (this.publicKey.ToLower().Equals(sender.ToLower()))
+                {
+                  spending += transaction.Amount + transaction.Fees;
+                }
 
-                    if (this.publicKey.ToLower().Equals(sender.ToLower()))
-                    {
-                        spending += transaction.Amount + transaction.Fees;
-                    }
-
-
-                    if (this.publicKey.ToLower().Equals(recipient.ToLower()))
-                    {
+                if (this.publicKey.ToLower().Equals(recipient.ToLower()))
+                {
                         income += transaction.Amount;
-                    }
+                }
 
-                    balance = income - spending;
-                
+                balance = income - spending;
             }
             return balance;
         }

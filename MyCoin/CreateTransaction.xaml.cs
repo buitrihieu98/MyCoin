@@ -55,8 +55,10 @@ namespace MyCoin
                 //}
                 DialogResult = true;
                 Close();
-
-
+                var walletSender = MyCoin.MainWindow.walletWithPublicKey(newTransaction.Sender);
+                walletSender.balance +=walletSender.calculateBalance();
+                var walletRecipient = MyCoin.MainWindow.walletWithPublicKey(newTransaction.Recipient);
+                walletRecipient.balance+=walletRecipient.calculateBalance();
             }
         }
     }

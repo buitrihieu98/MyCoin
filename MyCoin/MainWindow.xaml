@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyCoin"
         mc:Ignorable="d"
-        Title="My Coin" Height="1000" Width="1400" Loaded="Window_Loaded">
+        Title="My Coin" Height="600" Width="1400" Loaded="Window_Loaded">
     <StackPanel Margin="0,0,-8,0">
         <StackPanel Orientation="Horizontal">
             <Label  Content="Wallet 1" FontSize="20" Margin="50,0,0,0"></Label>
@@ -13,7 +13,7 @@
                 <Label Margin="5" Content="Name" Canvas.Left="97" Canvas.Top="199" RenderTransformOrigin="0.547,0.29"></Label>
                 <Label Margin="5" Content="Public Key" Canvas.Left="97" Canvas.Top="78"></Label>
                 <Label Margin="5" Content="Private Key" Canvas.Left="97" Canvas.Top="124"></Label>
-                <Label Margin="5" Content="Name" Canvas.Left="97" Canvas.Top="168"></Label>
+                <Label Margin="5" Content="Balance" Canvas.Left="97" Canvas.Top="168"></Label>
             </StackPanel>
             <StackPanel Margin="0,20,20,20" Width="1142">
                 <TextBlock Margin="10"  Name="name1TextBlock"  ></TextBlock>
@@ -29,7 +29,7 @@
                 <Label Margin="5" Content="Name" Canvas.Left="97" Canvas.Top="199" RenderTransformOrigin="0.547,0.29"></Label>
                 <Label Margin="5" Content="Public Key" Canvas.Left="97" Canvas.Top="78"></Label>
                 <Label Margin="5" Content="Private Key" Canvas.Left="97" Canvas.Top="124"></Label>
-                <Label Margin="5" Content="Name" Canvas.Left="97" Canvas.Top="168"></Label>
+                <Label Margin="5" Content="Balance" Canvas.Left="97" Canvas.Top="168"></Label>
             </StackPanel>
             <StackPanel Margin="0,20,20,20" Width="1146">
                 <TextBlock  Margin="10"  Name="name2TextBlock"  ></TextBlock>

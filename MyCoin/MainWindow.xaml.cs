@@ -29,7 +29,12 @@ namespace MyCoin
             var screen2 = new CreateNewWalletDialog();
             if (screen2.ShowDialog() == true) { }
             loadInfo();
-            
+            var initTransaction = new Transaction(0, "", "", 0);
+            blockChain.Add(new Block(0, "0", initTransaction, "Admin"));
+            Console.WriteLine("Trying to Mine block 1... ");
+            blockChain.ElementAt(0).MineBlock(difficulty);
+            Console.WriteLine("\nBlockchain is Valid: " + IsChainValid());
+
 
             /*
             var wallet1 = new Wallet("Hieu", 20);
@@ -70,7 +75,7 @@ namespace MyCoin
             Console.WriteLine(printBlockChain);
             Console.WriteLine(printWallets);
             */
-            
+
         }
 
         private void loadInfo()
@@ -83,11 +88,7 @@ namespace MyCoin
             privateKey2TextBlock.Text = wallets[1].privateKey;
             publicKey2TextBlock.Text = wallets[1].publicKey;
             balance2TextBlock.Text = wallets[1].balance.ToString();
-            var initTransaction = new Transaction(0, "", "", 0);
-            blockChain.Add(new Block(0, "0", initTransaction, "Admin"));
-            Console.WriteLine("Trying to Mine block 1... ");
-            blockChain.ElementAt(0).MineBlock(difficulty);
-            Console.WriteLine("\nBlockchain is Valid: " + IsChainValid());
+            
         }
 
         public static Boolean IsChainValid()
@@ -145,7 +146,8 @@ namespace MyCoin
         {
             var screen = new CreateTransaction();
             if (screen.ShowDialog() == true) { }
-            
+            loadInfo();
+
         }
     }
 }

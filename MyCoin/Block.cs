@@ -10,21 +10,21 @@ namespace MyCoin
 {
     public class Block
     {
-        public List<Transaction> transactions = new List<Transaction>();
+        public Transaction transaction;
         public String hash;
         public String previousHash;
         private String data;
         private long timeStamp; //as number of milliseconds since 1/1/1970.
-        private int nonce = 0;
+        public int nonce = 0;
         public string Creator { get; set; }
         public int height { get; set; }
 
-        public Block(int height, string previousHash, List<Transaction> transactions, string creator)
+        public Block(int height, string previousHash, Transaction transaction, string creator)
         {
             this.height = height;
             this.previousHash = previousHash;
             this.timeStamp = Datetime.GetTime();
-            this.transactions = transactions;
+            this.transaction = transaction;
             this.hash = CalculateHash();
             this.Creator = creator;
         }

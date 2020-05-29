@@ -19,19 +19,17 @@ namespace MyCoin
         public string privateKey { get; set; }
         public int balance { get; set; }
         
-        public int calculateBalance (List<Block> blockChain)
+        public int calculateBalance ()
         {
             int balance = 0;
             int spending = 0;
             int income = 0;
 
-            foreach (Block block in blockChain)
+            foreach (Block block in MyCoin.MainWindow.blockChain)
             {
-                var transactions = block.transactions;
+                var transaction = block.transaction;
 
-                foreach (Transaction transaction in transactions)
-                {
-
+ 
                     var sender = transaction.Sender;
                     var recipient = transaction.Recipient;
 
@@ -47,7 +45,7 @@ namespace MyCoin
                     }
 
                     balance = income - spending;
-                }
+                
             }
             return balance;
         }

@@ -17,18 +17,28 @@ namespace MyCoin
         {
             InitializeComponent();
         }
-
         public static BindingList<Block> blockChain =new BindingList<Block>();
         public static BindingList<Wallet> wallets = new BindingList<Wallet>();
-        public int difficulty = 5; //tự quy định độ khó = 5
+        public static List<Transaction> transactions = new List<Transaction>();
+        public static int difficulty = 5; //tự quy định độ khó = 5
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var screen1 = new CreateNewWalletDialog();
+            if (screen1.ShowDialog() == true) { }
+            var screen2 = new CreateNewWalletDialog();
+            if (screen2.ShowDialog() == true) { }
+            loadInfo();
+            
+
+            /*
             var wallet1 = new Wallet("Hieu", 20);
             var wallet2 = new Wallet("Thao", 50);
             Console.WriteLine($"name: {wallet1.name} private key: {wallet1.privateKey} public key: {wallet1.publicKey}");
             Console.WriteLine($"name: {wallet2.name} private key: {wallet2.privateKey} public key: {wallet2.publicKey}");
-            
+            wallets.Add(wallet1);
+            wallets.Add(wallet2);
+
             var transaction1 = new Transaction(10, wallet2.publicKey, wallet1.publicKey, 1);
             var transaction2 = new Transaction(10, wallet1.publicKey, wallet2.publicKey, 1);
             var transaction3 = new Transaction(20, wallet1.publicKey, wallet2.publicKey, 1);
@@ -43,10 +53,7 @@ namespace MyCoin
             transactions3.Add(transaction3);
             transactions3.Add(transaction2);
 
-            blockChain.Add(new Block(0,"0",transactions1, "Admin"));
-            Console.WriteLine("Trying to Mine block 1... ");
-            blockChain.ElementAt(0).MineBlock(difficulty);
-            Console.WriteLine("\nBlockchain is Valid: " + IsChainValid());
+            
 
             blockChain.Add(new Block(blockChain.Count-1, blockChain.ElementAt(blockChain.Count - 1).hash,transactions2,"Someone"));
             Console.WriteLine("Trying to Mine block 2... ");
@@ -59,9 +66,28 @@ namespace MyCoin
             Console.WriteLine("\nBlockchain is Valid: " + IsChainValid());
 
             string printBlockChain = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(blockChain);
+            string printWallets = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(wallets);
             Console.WriteLine(printBlockChain);
+            Console.WriteLine(printWallets);
+            */
             
-            Console.ReadLine();
+        }
+
+        private void loadInfo()
+        {
+            name1TextBlock.Text = wallets[0].name;
+            privateKey1TextBlock.Text = wallets[0].privateKey;
+            publicKey1TextBlock.Text = wallets[0].publicKey;
+            balance1TextBlock.Text = wallets[0].balance.ToString();
+            name2TextBlock.Text = wallets[1].name;
+            privateKey2TextBlock.Text = wallets[1].privateKey;
+            publicKey2TextBlock.Text = wallets[1].publicKey;
+            balance2TextBlock.Text = wallets[1].balance.ToString();
+            var initTransaction = new Transaction(0, "", "", 0);
+            blockChain.Add(new Block(0, "0", initTransaction, "Admin"));
+            Console.WriteLine("Trying to Mine block 1... ");
+            blockChain.ElementAt(0).MineBlock(difficulty);
+            Console.WriteLine("\nBlockchain is Valid: " + IsChainValid());
         }
 
         public static Boolean IsChainValid()
@@ -81,7 +107,6 @@ namespace MyCoin
                     Console.WriteLine("Current Hashes not equal");
                     return false;
                 }
-
                 //compare previous hash and registered previous hash
                 if (!previousBlock.hash.Equals(currentBlock.previousHash))
                 {
@@ -92,6 +117,35 @@ namespace MyCoin
             return true;
         }
 
+        public static Wallet walletWithPublicKey(string publicKey)
+        {
+            foreach (var wallet in wallets)
+            {
+                if (wallet.publicKey.Equals(publicKey))
+                {
+                    return wallet;
+                }
+            }
+            return null;
+        }
 
+        public static bool isValidPublicKey(string publicKey)
+        {
+            foreach (var wallet in wallets)
+            {
+                if (wallet.publicKey.Equals(publicKey))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void createNewTransactionButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new CreateTransaction();
+            if (screen.ShowDialog() == true) { }
+            
+        }
     }
 }

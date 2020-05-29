@@ -30,3 +30,7 @@ C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\obj\Debug\MyCoin.exe
 C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\obj\Debug\MyCoin.pdb
 C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\obj\Debug\MyCoin.csproj.CopyComplete
+C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\obj\Debug\CreateNewWalletDialog.g.cs
+C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\obj\Debug\CreateNewWalletDialog.baml
+C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\obj\Debug\CreateTransaction.g.cs
+C:\Users\Hieu\Documents\GitHub\MyCoin\MyCoin\obj\Debug\CreateTransaction.baml

@@ -14,10 +14,7 @@ namespace MyCoin
         public string Sender { get; set; }
         //public string Signature { get; set; }
         public int Fees { get; set; }
-        public override string ToString()
-        {
-            return Amount.ToString("0.00000000") + Recipient + Sender;
-        }
+        
         public Transaction(int amount, string recipient, string sender, int fees )
         {
             this.Amount = amount;
@@ -28,7 +25,15 @@ namespace MyCoin
 
         public bool isTransactionValid()
         {
-            return true;
+            var senderWallet = MyCoin.MainWindow.walletWithPublicKey(this.Sender);
+            if (MyCoin.MainWindow.isValidPublicKey(this.Recipient) &&(this.Amount + this.Fees > senderWallet.balance))
+            {
+                return true;
+            }
+            else 
+            { 
+                return false; 
+            }
         }
     }
 }

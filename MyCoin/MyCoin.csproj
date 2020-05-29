@@ -59,8 +59,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CreateNewWalletDialog.xaml.cs">
+      <DependentUpon>CreateNewWalletDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTransaction.xaml.cs">
+      <DependentUpon>CreateTransaction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wallet.cs" />
     <Compile Include="Transaction.cs" />
+    <Page Include="CreateNewWalletDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateTransaction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
